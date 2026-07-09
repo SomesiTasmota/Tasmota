@@ -87,8 +87,8 @@ Examples :
 // !!! Remember that your changes GOES AT THE BOTTOM OF THIS FILE right before the last #endif !!!
 */
 
-
-
+#undef  MY_LANGUAGE
+#define MY_LANGUAGE       de-DE                  // Deutsche Sprache
 
 
 #endif  // _USER_CONFIG_OVERRIDE_H_
