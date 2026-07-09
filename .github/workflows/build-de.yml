@@ -1,16 +1,25 @@
-name: Build German C3
+name: Build German C3 Stable
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - 'tasmota/user_config_override.h'
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Tasmota stable release (master)
+        uses: actions/checkout@v4
+        with:
+          repository: arendst/Tasmota
+          ref: master
+
+      - name: Add German language setting
+        run: |
+          cat >> tasmota/user_config_override.h << 'EOF'
+
+          #undef  MY_LANGUAGE
+          #define MY_LANGUAGE de_DE
+          EOF
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -26,5 +35,5 @@ jobs:
       - name: Upload firmware
         uses: actions/upload-artifact@v4
         with:
-          name: tasmota32c3-de
+          name: tasmota32c3-de-stable
           path: build_output/firmware/tasmota32c3.bin
