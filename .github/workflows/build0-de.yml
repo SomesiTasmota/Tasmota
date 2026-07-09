@@ -1,0 +1,30 @@
+name: Build German C3
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'tasmota/user_config_override.h'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install PlatformIO
+        run: pip install -U platformio
+
+      - name: Build tasmota32c3
+        run: platformio run -e tasmota32c3
+
+      - name: Upload firmware
+        uses: actions/upload-artifact@v4
+        with:
+          name: tasmota32c3-de
+          path: build_output/firmware/tasmota32c3.bin
