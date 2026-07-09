@@ -88,7 +88,7 @@ Examples :
 */
 
 #undef  MY_LANGUAGE
-#define MY_LANGUAGE       de-DE                  // Deutsche Sprache
+#define MY_LANGUAGE DE
 
 
 #endif  // _USER_CONFIG_OVERRIDE_H_
